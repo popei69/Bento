@@ -2,13 +2,12 @@ import Bento
 import StyleSheets
 
 extension Component {
-    public final class ImageOrLabel: AutoRenderable, HeightCustomizing {
+    public final class ImageOrLabel: AutoRenderable {
         public let configurator: (View) -> Void
         public let styleSheet: StyleSheet
         
         let imageOrLabel: ImageOrLabelView.Content
-        let heightComputer: () -> CGFloat
-        
+
         public init(
             imageOrLabel: ImageOrLabelView.Content = .none,
             styleSheet: StyleSheet
@@ -16,41 +15,12 @@ extension Component {
             configurator = { view in
                 view.imageOrLabel.content = imageOrLabel
             }
-            heightComputer = { () -> CGFloat in
-                let height: CGFloat
-                if let size = styleSheet.imageOrLabel.fixedSize {
-                    height = size.height
-                } else {
-                    switch imageOrLabel {
-                    case let .image(image):
-                        height = image.size.height
-                            + styleSheet.imageOrLabel.layoutMargins.top
-                            + styleSheet.imageOrLabel.layoutMargins.bottom
-                    case let .text(text):
-                        height = (text as NSString)
-                            .size(withAttributes: [.font: styleSheet.imageOrLabel.label.font])
-                            .height
-                            .rounded(.up)
-                    case .none:
-                        height = 0
-                    }
-                }
-                return height
-            }
             self.imageOrLabel = imageOrLabel
             self.styleSheet = styleSheet
         }
         
         public static func == (lhs: Component.ImageOrLabel, rhs: Component.ImageOrLabel) -> Bool {
             return lhs.imageOrLabel == rhs.imageOrLabel
-        }
-        
-        public func height(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer()
-        }
-        
-        public func estimatedHeight(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer()
         }
     }
 }

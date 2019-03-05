@@ -3,12 +3,10 @@ import StyleSheets
 import UIKit
 
 extension Component {
-    public final class Button: AutoRenderable, HeightCustomizing {
+    public final class Button: AutoRenderable {
 
         public let configurator: (View) -> Void
         public let styleSheet: StyleSheet
-
-        private let heightComputer: (CGFloat, UIEdgeInsets) -> CGFloat
 
         public init(
             title: String? = nil,
@@ -25,30 +23,7 @@ extension Component {
                 view.didTap = didTap
                 view.interactionBehavior = interactionBehavior
             }
-            self.heightComputer = { width, inheritedMargins in
-                let contentWidth = width
-                    - max(styleSheet.layoutMargins.left, inheritedMargins.left)
-                    - max(styleSheet.layoutMargins.right, inheritedMargins.right)
-                    - styleSheet.button.contentEdgeInsets.horizontalTotal
-
-                let titleHeight = styleSheet.button.height(of: title ?? "", fittingWidth: contentWidth)
-                let imageHeight = styleSheet.button.image(for: .normal)?.size.height ?? 0
-
-                return styleSheet.layoutMargins.verticalTotal
-                    + max(
-                        styleSheet.button.contentEdgeInsets.verticalTotal + max(titleHeight, imageHeight),
-                        styleSheet.enforcesMinimumHeight ? 44.0 : 0.0
-                    )
-            }
             self.styleSheet = styleSheet
-        }
-
-        public func height(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer(width, inheritedMargins)
-        }
-
-        public func estimatedHeight(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer(width, inheritedMargins)
         }
     }
 }

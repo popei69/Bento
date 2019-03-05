@@ -3,10 +3,9 @@ import StyleSheets
 import UIKit
 
 extension Component {
-    public final class Description: AutoRenderable, HeightCustomizing {
+    public final class Description: AutoRenderable {
         public let configurator: (View) -> Void
         public let styleSheet: StyleSheet
-        private let heightComputer: (CGFloat, UIEdgeInsets) -> CGFloat
 
         public init(text: String,
                     // TODO: [WLT] (10/2018) The image is passed here, at accessoryIcon, but can also be
@@ -30,27 +29,7 @@ extension Component {
                 view.accessoryButton.isUserInteractionEnabled = didTapAccessoryButton != nil
                 view.accessoryButton.setImage(accessoryIcon, for: .normal)
             }
-            self.heightComputer = { width, inheritedMargins in
-                let verticalMargins = styleSheet.layoutMargins.verticalTotal
-                let textBoundWidth = width
-                    - max(styleSheet.layoutMargins.left, inheritedMargins.left)
-                    - max(styleSheet.layoutMargins.right, inheritedMargins.right)
-                    - (accessoryIcon.map { $0.size.width + styleSheet.horizontalSpacing } ?? 0)
-                let textHeight = styleSheet.text.height(of: text, fittingWidth: textBoundWidth)
-                return max(
-                    styleSheet.enforcesMinimumHeight ? 44.0 : 0.0,
-                    max(textHeight, accessoryIcon?.size.height ?? 0.0) + verticalMargins
-                )
-            }
             self.styleSheet = styleSheet
-        }
-
-        public func estimatedHeight(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer(width, inheritedMargins)
-        }
-
-        public func height(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer(width, inheritedMargins)
         }
     }
 }

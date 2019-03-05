@@ -28,67 +28,6 @@ public final class BoxTableViewAdapter<SectionId: Hashable, RowId: Hashable>
         return nil
     }
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = sections[indexPath.section].items[indexPath.row]
-            .component(as: HeightCustomizing.self)
-            .map { component in
-                return component.height(forWidth: tableView.bounds.width,
-                                        inheritedMargins: tableView.layoutMargins.horizontal)
-                    + tableView.separatorHeight
-            }
-        return height ?? tableView.rowHeight
-    }
-
-    override public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let height = sections[section]
-            .component(of: .header, as: HeightCustomizing.self)
-            .map { component in
-                return component.height(forWidth: tableView.bounds.width,
-                                        inheritedMargins: tableView.layoutMargins.horizontal)
-            }
-        return height ?? super.tableView(tableView, heightForHeaderInSection: section)
-    }
-
-    override public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let height = sections[section]
-            .component(of: .footer, as: HeightCustomizing.self)
-            .map { component in
-                return component.height(forWidth: tableView.bounds.width,
-                                        inheritedMargins: tableView.layoutMargins.horizontal)
-        }
-        return height ?? super.tableView(tableView, heightForFooterInSection: section)
-    }
-
-    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = sections[indexPath.section].items[indexPath.row]
-            .component(as: HeightCustomizing.self)
-            .map { component in
-                return component.estimatedHeight(forWidth: tableView.bounds.width,
-                                                 inheritedMargins: tableView.layoutMargins.horizontal)
-            }
-        return height ?? tableView.estimatedRowHeight
-    }
-
-    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        let height = sections[section]
-            .component(of: .header, as: HeightCustomizing.self)
-            .map { component in
-                return component.height(forWidth: tableView.bounds.width,
-                                        inheritedMargins: tableView.layoutMargins.horizontal)
-            }
-        return height ?? tableView.estimatedSectionHeaderHeight
-    }
-
-    public func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        let height = sections[section]
-            .component(of: .footer, as: HeightCustomizing.self)
-            .map { component in
-                return component.height(forWidth: tableView.bounds.width,
-                                        inheritedMargins: tableView.layoutMargins.horizontal)
-            }
-        return height ?? tableView.estimatedSectionFooterHeight
-    }
-
     private func copyLayoutMargins(from tableView: UITableView, to view: UIView) {
         view.preservesSuperviewLayoutMargins = false
         view.layoutMargins = UIEdgeInsets(top: 0,

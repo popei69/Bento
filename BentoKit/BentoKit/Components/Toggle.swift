@@ -2,9 +2,7 @@ import Bento
 import StyleSheets
 
 extension Component {
-    public final class Toggle: AutoRenderable, HeightCustomizing {
-        private let heightComputer: (CGFloat, UIEdgeInsets) -> CGFloat
-
+    public final class Toggle: AutoRenderable {
         public let configurator: (View) -> Void
         public let styleSheet: StyleSheet
 
@@ -18,7 +16,7 @@ extension Component {
             animateValueChange: Bool = false,
             styleSheet: StyleSheet,
             didChangeValue: ((Bool) -> Void)? = nil
-            ) {
+        ) {
 
             self.styleSheet = styleSheet
             self.configurator = { view in
@@ -37,32 +35,6 @@ extension Component {
                 view.imageView.isHidden = (image == nil)
                 view.isRefreshing = isRefreshing
             }
-
-            self.heightComputer = { width, inheritedMargins in
-                let verticalMargins = styleSheet.layoutMargins.verticalTotal
-                let imageWidth: CGFloat = image != nil
-                    ? Dimensions.imageViewWidth + Dimensions.horizontalElementsSpacing
-                    : 0.0
-                let textBoundWidth = width
-                    - max(styleSheet.layoutMargins.left, inheritedMargins.left)
-                    - max(styleSheet.layoutMargins.right, inheritedMargins.right)
-                    - Dimensions.toggleWidth
-                    - Dimensions.horizontalElementsSpacing
-                    - imageWidth
-                let textHeight = styleSheet.text.height(of: title, fittingWidth: textBoundWidth)
-                return max(
-                    styleSheet.enforcesMinimumHeight ? Dimensions.minimumCellHeight : 0.0,
-                    textHeight + verticalMargins
-                )
-            }
-        }
-
-        public func estimatedHeight(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer(width, inheritedMargins)
-        }
-
-        public func height(forWidth width: CGFloat, inheritedMargins: UIEdgeInsets) -> CGFloat {
-            return heightComputer(width, inheritedMargins)
         }
     }
 }
@@ -124,6 +96,8 @@ extension Component.Toggle {
         }
     }
 }
+
+extension Component.Toggle.View: RequiringPreSizingLayoutPass {}
 
 extension Component.Toggle {
     public final class StyleSheet: BaseViewStyleSheet<View> {

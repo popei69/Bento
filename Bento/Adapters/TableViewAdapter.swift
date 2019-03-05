@@ -14,7 +14,13 @@ open class TableViewAdapterBase<SectionID: Hashable, ItemID: Hashable>
         super.init()
     }
 
+    open func willUpdate() {}
+    open func didUpdate() {}
+
     func update(sections: [Section<SectionID, ItemID>], with animation: TableViewAnimation) {
+        willUpdate()
+        defer { didUpdate() }
+
         guard let tableView = tableView else {
             return
         }

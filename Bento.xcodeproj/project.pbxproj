@@ -67,6 +67,7 @@
 		651E75C0221005E300130866 /* UIKitContainerDiffApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651E75BF221005E300130866 /* UIKitContainerDiffApplicationTests.swift */; };
 		65496FB8211C323F00511D8A /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587F0717201B355800ACD219 /* TableViewContainerCell.swift */; };
 		65496FB9211C323F00511D8A /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9509BC2762C8B4277B973D8 /* TableViewAdapter.swift */; };
+		65570424222E88A500EEE8EC /* RequiringPreSizingLayoutPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65570423222E88A500EEE8EC /* RequiringPreSizingLayoutPass.swift */; };
 		65A69EDF218B8892005D90AC /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A69EDE218B8891005D90AC /* UICollectionViewExtensions.swift */; };
 		65A69EE1218B8AB6005D90AC /* CustomCollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A69EE0218B8AB6005D90AC /* CustomCollectionViewAdapter.swift */; };
 		65BA922E20AF388F004AEF18 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA922D20AF388F004AEF18 /* UITableViewExtensions.swift */; };
@@ -191,6 +192,7 @@
 		61B64BB5208745730092082C /* CollectionViewContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewContainerCell.swift; sourceTree = "<group>"; };
 		65020C312203186400DC8F42 /* NativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeView.swift; sourceTree = "<group>"; };
 		651E75BF221005E300130866 /* UIKitContainerDiffApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitContainerDiffApplicationTests.swift; sourceTree = "<group>"; };
+		65570423222E88A500EEE8EC /* RequiringPreSizingLayoutPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiringPreSizingLayoutPass.swift; sourceTree = "<group>"; };
 		65A69EDE218B8891005D90AC /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		65A69EE0218B8AB6005D90AC /* CustomCollectionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewAdapter.swift; sourceTree = "<group>"; };
 		65BA922D20AF388F004AEF18 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				61B64BB5208745730092082C /* CollectionViewContainerCell.swift */,
 				9AF4786B2120CA7500F87E21 /* BentoReusableView.swift */,
 				A950967CC717BBF3B02B766D /* Box.swift */,
+				65570423222E88A500EEE8EC /* RequiringPreSizingLayoutPass.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -684,7 +687,7 @@
 				5829D269200FB092001E020D /* AppDelegate.swift in Sources */,
 				04EBE74F222C031B002D38C4 /* Optional+Extension.swift in Sources */,
 				04C9A0842211967300C70E09 /* SignUpViewController.swift in Sources */,
-				61B4091A208523F60063DE25 /* IntroViewController.swift in Sources */,
+				61B4091A208523F60063DE25 /* FoodListViewController.swift in Sources */,
 				61B4091A208523F60063DE25 /* FoodListViewController.swift in Sources */,
 				58FC4449207CFBD700DA3614 /* IconTitleDetailsView.swift in Sources */,
 				044329EA2229096E004EFB29 /* SignUpRenderer.swift in Sources */,
@@ -715,6 +718,7 @@
 				5857BECA2056F02C0085EB9C /* If.swift in Sources */,
 				A9509FB12CAD89179FAA03B0 /* Box.swift in Sources */,
 				582D9987217F87B100C67B0D /* ComponentLifecycleAware.swift in Sources */,
+				65570424222E88A500EEE8EC /* RequiringPreSizingLayoutPass.swift in Sources */,
 				65E3ECA621133C9400869DF3 /* UIKit+CollectionViewFocus.swift in Sources */,
 				58467B03202B33F200577C77 /* TableViewSectionDiff.swift in Sources */,
 				A9509C4FC3664040FF3649CD /* Node.swift in Sources */,
